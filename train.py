@@ -56,10 +56,9 @@ class DCGAN():
                 optimizer_G.step()
                 G_loss = loss_G.item()
 
-                if (i+1) % self.print_freq == 0:
-                    self.train_G_losses.append(G_loss)
-                    self.train_D_losses.append(D_loss)
-
-                    if epoch % self.epoch_print == 0:
-                        state = ('Iteration : {} - G Loss : {:.6f}, D Loss : {:.6f}').format(i+1, G_loss, D_loss)
-                        print(state)
+                self.train_G_losses.append(G_loss)
+                self.train_D_losses.append(D_loss)
+                
+                if ((i+1) % self.print_freq == 0) and (epoch % self.epoch_print == 0):
+                    state = ('Iteration : {} - G Loss : {:.6f}, D Loss : {:.6f}').format(i+1, G_loss, D_loss)
+                    print(state)
